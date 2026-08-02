@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block title %}Engage Church | A church in Bloomfield, Missouri{% endblock %}
+{% block description %}Engage Church meets Sundays at 10:30 AM on Christian Street in Bloomfield, Missouri. Come as you are. Nobody will ask you to stand up or introduce yourself.{% endblock %}
+
+{% block body %}
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow eyebrow--light">Bloomfield, Missouri</p>
+        <h1>Engage with God.<span class="accent">Engage in community.</span></h1>
+        <p>{{ church.intro }}</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ url_for('visit') }}">Plan your visit</a>
+          <a class="btn btn--onDark" href="{{ url_for('sermons') }}">Watch a message</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img class="cut" src="{{ url_for('static', filename='img/photos/worship.jpg') }}"
+             alt="People worshiping together at Engage Church" width="1360" height="765">
+      </div>
+    </div>
+
+    <div class="hero-times">
+      {% for s in services %}
+        <div>
+          <div class="day">{{ s.day }}</div>
+          <div class="time">{{ s.time }}</div>
+          <div class="note">{{ s.note }}</div>
+        </div>
+      {% endfor %}
+      <div>
+        <div class="day">Where</div>
+        <div class="time" style="font-size:1.1rem;">501 Christian St</div>
+        <div class="note"><a href="{{ church.map_url }}" target="_blank" rel="noopener" style="color:rgba(255,255,255,.75)">Get directions</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">Come as you are</p>
+        <h2>You can show up<br>without knowing<br>a single person</h2>
+      </div>
+      <div>
+        <p class="lede">
+          Some people here have been following Jesus for forty years. Some walked in
+          for the first time last week and are still deciding what they think.
+          Both belong.
+        </p>
+        <p>
+          You will not be asked to stand up, introduce yourself, or fill anything out.
+          If you want to talk to someone afterward, we are easy to find. If you would
+          rather slip in and slip out, that is completely fine.
+        </p>
+        <a class="link" href="{{ url_for('visit') }}">See what a Sunday looks like</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="wrap">
+    <p class="eyebrow">What we are about</p>
+    <h2 style="max-width:18ch;">Faith is not meant to be worked out alone</h2>
+    <div class="grid grid--3" style="margin-top:44px;">
+      {% for title, text in values %}
+        <div class="card value">
+          <h3>{{ title }}</h3>
+          <p>{{ text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">This week</p>
+        <h2>Latest message</h2>
+        <p class="lede">
+          Miss a Sunday, or want to hear it again? Every message goes up on our
+          YouTube channel.
+        </p>
+        <a class="link" href="{{ url_for('sermons') }}">All sermons</a>
+      </div>
+      <div>
+        {% if sermons %}
+          {% set s = sermons[0] %}
+          <div class="embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/{{ s.id }}"
+                    title="{{ s.title }}" loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="sermon" style="margin-top:14px;">
+            <div class="title">{{ s.title }}</div>
+            {% if s.published %}<div class="date">{{ s.published }}</div>{% endif %}
+          </div>
+        {% else %}
+          <div class="empty">
+            <h3>Messages are coming soon</h3>
+            <p>Sunday messages will be posted here each week once our channel is live.</p>
+            <a class="btn btn--ghost" href="{{ youtube_url }}" target="_blank" rel="noopener">Visit our channel</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="wrap">
+    <p class="eyebrow">Find your people</p>
+    <h2>Ministries</h2>
+    <div class="grid grid--3" style="margin-top:40px;">
+      {% for m in ministries %}
+        <div class="ministry">
+          <div class="meta">{{ m.ages }}</div>
+          <h3>{{ m.name }}</h3>
+          <p>{{ m.blurb }}</p>
+          <div class="when">{{ m.when }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <div style="margin-top:36px;">
+      <a class="link" href="{{ url_for('ministries') }}">See every ministry</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--azure">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow eyebrow--light">Generosity</p>
+        <h2>Give online</h2>
+        <p class="lede">
+          Giving supports everything that happens here, from kids ministry to
+          keeping the lights on. It takes about a minute and it is secure.
+        </p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{{ give_url }}" target="_blank" rel="noopener">Give now</a>
+        <a class="btn btn--onDark" href="{{ url_for('give') }}">Ways to give</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ink section--tight">
+  <div class="wrap info-strip">
+    <div>
+      <div class="label">Visit</div>
+      <a href="{{ church.map_url }}" target="_blank" rel="noopener">{{ church.address }}</a>
+    </div>
+    <div>
+      <div class="label">Call</div>
+      <a href="tel:{{ church.phone_tel }}">{{ church.phone_display }}</a>
+    </div>
+    <div>
+      <div class="label">Email</div>
+      <a href="mailto:{{ church.email }}">{{ church.email }}</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

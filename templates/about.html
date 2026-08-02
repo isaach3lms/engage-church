@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}About | Engage Church Bloomfield{% endblock %}
+{% block description %}Who we are, our leadership team, and what we believe. Engage Church is a church in Bloomfield, Missouri.{% endblock %}
+
+{% block body %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">About us</p>
+    <h1>Love God.<br>Love people.<br>Make disciples.</h1>
+    <p>That is the whole thing. Everything we do runs through it.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2>A church for<br>Bloomfield</h2>
+      </div>
+      <div>
+        <p class="lede">
+          Engage Church is a new name for a congregation that has been part of
+          Bloomfield for a long time. Same building on Christian Street, same
+          commitment to this town, a renewed focus on helping people take a real
+          next step with Jesus.
+        </p>
+        <p>
+          We believe the Gospel of Jesus Christ, revealed in Scripture, is the
+          foundation of everything we do. Every week we gather to worship, grow,
+          and encourage one another. We walk alongside people who are seeking
+          Jesus, and we teach what He commanded.
+        </p>
+        <p>
+          Our mission does not stop at the doors. We are here to serve this
+          community and share the hope of Christ well beyond our walls.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="wrap">
+    <p class="eyebrow">Pastoral team</p>
+    <h2>Who you will meet</h2>
+    <div class="staff staff-grid" style="margin-top:40px;">
+      {% for p in pastoral %}
+        <figure>
+          <img src="{{ url_for('static', filename='img/' ~ p.photo) }}"
+               alt="{{ p.name }}, {{ p.role }}" loading="lazy" width="800" height="800">
+          <figcaption>
+            <div class="name">{{ p.name }}</div>
+            <div class="role">{{ p.role }}</div>
+            {% if p.spouse %}
+              <div class="spouse">
+                <strong>{{ p.spouse }}</strong>{% if p.spouse_role %}, {{ p.spouse_role }}{% endif %}
+              </div>
+            {% endif %}
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+
+    <p class="eyebrow" style="margin-top:64px;">Leadership and staff</p>
+    <div class="staff staff-grid" style="margin-top:28px;">
+      {% for p in leadership %}
+        <figure>
+          <img src="{{ url_for('static', filename='img/' ~ p.photo) }}"
+               alt="{{ p.name }}, {{ p.role }}" loading="lazy" width="800" height="800">
+          <figcaption>
+            <div class="name">{{ p.name }}</div>
+            <div class="role">{{ p.role }}</div>
+            {% if p.spouse %}
+              <div class="spouse"><strong>{{ p.spouse }}</strong></div>
+            {% endif %}
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Our values</p>
+    <h2>Six things we hold to</h2>
+    <div class="grid grid--3" style="margin-top:40px;">
+      {% for title, text in values %}
+        <div class="card value">
+          <h3>{{ title }}</h3>
+          <p>{{ text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="wrap">
+    <p class="eyebrow">What we believe</p>
+    <h2>Statement of faith</h2>
+    <p class="lede" style="margin-top:14px;">
+      The short version is above. This is the full version, in plain language.
+    </p>
+    <div class="disclosure" style="margin-top:36px;max-width:900px;">
+      {% for title, text in beliefs %}
+        <details>
+          <summary>{{ title }}</summary>
+          <div class="answer">{{ text }}</div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--azure section--tight">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <h2 style="margin:0;">Still have questions?</h2>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{{ url_for('contact') }}">Ask us anything</a>
+        <a class="btn btn--onDark" href="{{ url_for('visit') }}">Plan your visit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

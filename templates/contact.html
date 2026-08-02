@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% from "partials/_form.html" import contact_form with context %}
+{% block title %}Contact | Engage Church Bloomfield{% endblock %}
+{% block description %}Get in touch with Engage Church in Bloomfield, Missouri. Call, email, or send a message.{% endblock %}
+
+{% block body %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">Contact</p>
+    <h1>Get in touch</h1>
+    <p>A real person reads every message. We usually reply within a couple of days.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--split" style="align-items:start;">
+      <div>
+        {{ contact_form(default_topic='general', heading='Send us a message') }}
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:28px;">
+          <h3>Office</h3>
+          <p>
+            <a href="tel:{{ church.phone_tel }}">{{ church.phone_display }}</a><br>
+            <a href="mailto:{{ church.email }}">{{ church.email }}</a>
+          </p>
+        </div>
+        <div class="card" style="margin-bottom:28px;">
+          <h3>Find us</h3>
+          <p><a href="{{ church.map_url }}" target="_blank" rel="noopener">{{ church.address }}</a></p>
+          {% for s in services %}
+            <p style="margin:0;"><strong>{{ s.day }}</strong> at {{ s.time }}</p>
+          {% endfor %}
+        </div>
+        <img class="cut" src="{{ url_for('static', filename='img/photos/prayer-alt.jpg') }}"
+             alt="People praying together at Engage Church"
+             style="width:100%;height:260px;object-fit:cover;border-radius:4px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

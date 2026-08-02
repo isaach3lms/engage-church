@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Give | Engage Church Bloomfield{% endblock %}
+{% block description %}Give online to Engage Church in Bloomfield, Missouri. Secure one-time or recurring giving.{% endblock %}
+
+{% block body %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">Give</p>
+    <h1>Generosity keeps<br>this church going</h1>
+    <p>Kids ministry, youth, the building, and everything that serves Bloomfield outside these walls.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">Online</p>
+        <h2>Give in about a minute</h2>
+        <p class="lede">
+          One-time or recurring, by card or bank transfer. The link opens our
+          secure giving platform.
+        </p>
+        <div class="btn-row" style="margin-top:24px;">
+          <a class="btn btn--primary" href="{{ give_url }}" target="_blank" rel="noopener">Give online</a>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Other ways to give</h3>
+          <p><strong>In person.</strong> Drop it in the plate on Sunday morning.</p>
+          <p><strong>By mail.</strong> {{ church.address }}</p>
+          <p style="margin-top:18px;">
+            Questions about giving records or year-end statements?
+            <a href="{{ url_for('contact') }}">Contact the office</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray section--tight">
+  <div class="wrap measure">
+    <p class="eyebrow">A note for guests</p>
+    <p class="lede">
+      If you are visiting, there is no expectation that you give. Passing the
+      plate along is completely normal and nobody is watching.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

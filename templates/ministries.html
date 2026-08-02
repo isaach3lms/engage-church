@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "partials/_form.html" import contact_form with context %}
+{% block title %}Ministries | Engage Church Bloomfield{% endblock %}
+{% block description %}Kids, youth, small groups, worship, and conferences at Engage Church in Bloomfield, Missouri. Find where you fit.{% endblock %}
+
+{% block body %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">Ministries</p>
+    <h1>Where people<br>stop feeling<br>like visitors</h1>
+    <p>Sunday morning is the front door. These are the rooms behind it.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--3">
+      {% for m in ministries %}
+        <div class="ministry">
+          <div class="meta">{{ m.ages }}</div>
+          <h3>{{ m.name }}</h3>
+          <p>{{ m.blurb }}</p>
+          <div class="when">{{ m.when }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="wrap" style="max-width:760px;">
+    {{ contact_form(
+        default_topic='general',
+        heading='Ask about a ministry',
+        blurb='Pick what you are asking about and it goes straight to the person who leads it.'
+    ) }}
+  </div>
+</section>
+
+{% endblock %}

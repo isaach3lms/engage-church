@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Sermons | Engage Church Bloomfield{% endblock %}
+{% block description %}Watch recent messages from Engage Church in Bloomfield, Missouri.{% endblock %}
+
+{% block body %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">Sermons</p>
+    <h1>Recent messages</h1>
+    <p>Every Sunday message, posted after the service. Watch here or on YouTube.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {% if sermons %}
+      <div class="embed" style="margin-bottom:52px;">
+        <iframe src="https://www.youtube-nocookie.com/embed/{{ sermons[0].id }}"
+                title="{{ sermons[0].title }}" loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
+
+      {% if sermons|length > 1 %}
+        <p class="eyebrow">Earlier messages</p>
+        <div class="sermon-grid" style="margin-top:28px;">
+          {% for s in sermons[1:] %}
+            <a class="sermon" href="{{ s.url }}" target="_blank" rel="noopener">
+              <img src="{{ s.thumb }}" alt="{{ s.title }}" loading="lazy">
+              <div class="title">{{ s.title }}</div>
+              {% if s.published %}<div class="date">{{ s.published }}</div>{% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div style="margin-top:48px;">
+        <a class="btn btn--ghost" href="{{ youtube_url }}" target="_blank" rel="noopener">Full archive on YouTube</a>
+      </div>
+    {% else %}
+      <div class="empty">
+        <h3>Messages are coming soon</h3>
+        <p>Sunday messages will appear here automatically each week once our YouTube channel is live.</p>
+        <a class="btn btn--primary" href="{{ youtube_url }}" target="_blank" rel="noopener">Visit our channel</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

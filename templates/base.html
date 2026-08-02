@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ church.name }} | {{ church.city }}, MO{% endblock %}</title>
+<meta name="description" content="{% block description %}Engage Church is a church in Bloomfield, Missouri. Sundays at 10:30 AM on Christian Street. Everyone is welcome.{% endblock %}">
+<meta name="theme-color" content="#255570">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ church.name }}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+<meta property="og:image" content="{{ url_for('static', filename='img/photos/worship.jpg', _external=True) }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="{{ url_for('static', filename='img/logo-engage.png') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Church",
+  "name": "{{ church.name }}",
+  "url": "https://engagebloomfield.com",
+  "telephone": "{{ church.phone_display }}",
+  "email": "{{ church.email }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "501 Christian St",
+    "addressLocality": "Bloomfield",
+    "addressRegion": "MO",
+    "postalCode": "63825",
+    "addressCountry": "US"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='img/logo-engage.png') }}"
+           alt="Engage Church Bloomfield">
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="nav">
+      {% set page = request.endpoint %}
+      <a href="{{ url_for('visit') }}"      {% if page=='visit' %}aria-current="page"{% endif %}>Plan Your Visit</a>
+      <a href="{{ url_for('about') }}"      {% if page=='about' %}aria-current="page"{% endif %}>About</a>
+      <a href="{{ url_for('ministries') }}" {% if page=='ministries' %}aria-current="page"{% endif %}>Ministries</a>
+      <a href="{{ url_for('sermons') }}"    {% if page=='sermons' %}aria-current="page"{% endif %}>Sermons</a>
+      <a href="{{ url_for('contact') }}"    {% if page=='contact' %}aria-current="page"{% endif %}>Contact</a>
+      <a class="btn btn--primary" href="{{ url_for('give') }}">Give</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  {% block body %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="wordmark">Engage<br>Church<span>Bloomfield</span></div>
+        <p style="font-size:.95rem;max-width:34ch;">{{ church.intro }}</p>
+      </div>
+
+      <div>
+        <h4>Gather</h4>
+        <ul>
+          {% for s in services %}
+            <li>{{ s.day }} at {{ s.time }}</li>
+          {% endfor %}
+          <li><a href="{{ church.map_url }}" target="_blank" rel="noopener">{{ church.address }}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="{{ url_for('visit') }}">Plan your visit</a></li>
+          <li><a href="{{ url_for('ministries') }}">Ministries</a></li>
+          <li><a href="{{ url_for('sermons') }}">Sermons</a></li>
+          <li><a href="{{ url_for('give') }}">Give</a></li>
+          <li><a href="tel:{{ church.phone_tel }}">{{ church.phone_display }}</a></li>
+          <li><a href="mailto:{{ church.email }}">{{ church.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ now.year }} {{ church.legal_name }}</span>
+      <span>Site by Between Sundays</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.getAttribute('data-open') === 'true';
+      nav.setAttribute('data-open', String(!open));
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.setAttribute('data-open', 'false');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+</body>
+</html>

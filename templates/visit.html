@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% from "partials/_form.html" import contact_form with context %}
+{% block title %}Plan Your Visit | Engage Church Bloomfield{% endblock %}
+{% block description %}What to expect on a Sunday at Engage Church in Bloomfield, Missouri. Service length, what to wear, where to park, and how kids check-in works.{% endblock %}
+
+{% block body %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--light">Plan your visit</p>
+    <h1>Here is exactly<br>what to expect</h1>
+    <p>No surprises. Read this and you will know more than most people who have been coming for a year.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">Sunday morning</p>
+        <h2>Seventy minutes,<br>start to finish</h2>
+        <p class="lede">
+          We gather at 10:30 in the Worship Center. Music, a message from Scripture,
+          and time to pray if you want it.
+        </p>
+        <p>
+          Come as you are. Some people wear jeans, some wear a tie. Nobody will
+          notice either way.
+        </p>
+        <div class="btn-row" style="margin-top:26px;">
+          <a class="btn btn--primary" href="#connect">Tell us you are coming</a>
+          <a class="btn btn--ghost" href="{{ church.map_url }}" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+      <div>
+        <img class="cut" src="{{ url_for('static', filename='img/photos/prayer.jpg') }}"
+             alt="People praying together after a service"
+             style="width:100%;height:400px;object-fit:cover;border-radius:4px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="wrap">
+    <p class="eyebrow">Questions people actually ask</p>
+    <h2>Before you come</h2>
+    <div class="disclosure" style="margin-top:36px;max-width:900px;">
+      {% for q, a in faqs %}
+        <details {% if loop.index <= 2 %}open{% endif %}>
+          <summary>{{ q }}</summary>
+          <div class="answer">{{ a }}</div>
+        </details>
+      {% endfor %}
+    </div>
+    {% if precheck_url %}
+      <div class="btn-row" style="margin-top:32px;">
+        <a class="btn btn--solid" href="{{ precheck_url }}" target="_blank" rel="noopener">Pre-check your kids</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap" style="max-width:760px;">
+    {{ contact_form(
+        default_topic='visit',
+        heading='Let us know you are coming',
+        blurb='Optional, and it only means someone will look for you at the door. You are welcome to show up without telling anyone.'
+    ) }}
+  </div>
+</section>
+
+{% endblock %}

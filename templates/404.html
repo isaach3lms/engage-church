@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Page not found | Engage Church Bloomfield{% endblock %}
+
+{% block body %}
+<section class="section">
+  <div class="wrap measure" style="padding:60px 24px;">
+    <p class="eyebrow">404</p>
+    <h1>That page is not here</h1>
+    <p class="lede">The link may be out of date. Here is where most people are headed.</p>
+    <div class="btn-row" style="margin-top:28px;">
+      <a class="btn btn--primary" href="{{ url_for('visit') }}">Plan your visit</a>
+      <a class="btn btn--ghost" href="{{ url_for('home') }}">Back to home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
