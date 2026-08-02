@@ -137,9 +137,22 @@ p:last-child { margin-bottom: 0; }
 }
 .btn:hover::after { transform: translateX(4px); }
 
-/* Orange fill uses charcoal text. White on this orange fails contrast. */
-.btn--primary { background: var(--orange); color: var(--charcoal); }
-.btn--primary:hover { background: #FF8B45; color: var(--charcoal); }
+/* Orange fill with a white label, per the brand board.
+   Specificity is deliberately 0,2,0 (.btn.btn--primary) so it beats `.nav a`
+   (0,1,1) and any other element-qualified rule. All link states are listed
+   because :visited and :hover otherwise fall back to the global anchor color. */
+.btn.btn--primary,
+.btn.btn--primary:link,
+.btn.btn--primary:visited,
+.btn.btn--primary:hover,
+.btn.btn--primary:focus,
+.btn.btn--primary:active {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn.btn--primary:hover { background: #F06A18; }
+/* Arrow drawn explicitly rather than inheriting currentColor. */
+.btn.btn--primary::after { background: var(--white); }
 
 .btn--solid { background: var(--azure); color: var(--white); }
 .btn--solid:hover { background: var(--azure-deep); color: var(--white); }
@@ -149,6 +162,10 @@ p:last-child { margin-bottom: 0; }
 
 .btn--onDark { border-color: rgba(255,255,255,.55); color: var(--white); background: transparent; }
 .btn--onDark:hover { background: var(--white); color: var(--azure); }
+
+/* Nav Give button sits tighter than the page CTAs, so it gets extra padding.
+   Color comes from .btn.btn--primary above, which outranks `.nav a`. */
+.nav .btn--primary { padding-left: 34px; padding-right: 34px; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
 

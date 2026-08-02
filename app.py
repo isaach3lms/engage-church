@@ -374,9 +374,18 @@ def handle_form(default_topic="general"):
 # TEMPLATE GLOBALS
 # ---------------------------------------------------------------------------
 
+def asset_version(filename):
+    """File mtime, used to bust the browser cache when CSS changes."""
+    try:
+        return int(os.path.getmtime(os.path.join(app.static_folder, filename)))
+    except OSError:
+        return 0
+
+
 @app.context_processor
 def inject_globals():
     return {
+        "css_version": asset_version("css/style.css"),
         "church": CHURCH,
         "services": SERVICES,
         "give_url": GIVE_URL,
