@@ -4,37 +4,15 @@
 
 {% block body %}
 
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow eyebrow--light">Bloomfield, Missouri</p>
-        <h1>Engage with God.<span class="accent">Engage in community.</span></h1>
-        <p>{{ church.intro }}</p>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="{{ url_for('visit') }}">Plan your visit</a>
-          <a class="btn btn--onDark" href="{{ url_for('sermons') }}">Watch a message</a>
-        </div>
-      </div>
-      <div class="hero-media">
-        <img class="cut" src="{{ url_for('static', filename='img/photos/worship.jpg') }}"
-             alt="People worshiping together at Engage Church" width="1360" height="765">
-      </div>
-    </div>
-
-    <div class="hero-times">
-      {% for s in services %}
-        <div>
-          <div class="day">{{ s.day }}</div>
-          <div class="time">{{ s.time }}</div>
-          <div class="note">{{ s.note }}</div>
-        </div>
-      {% endfor %}
-      <div>
-        <div class="day">Where</div>
-        <div class="time" style="font-size:1.1rem;">501 Christian St</div>
-        <div class="note"><a href="{{ church.map_url }}" target="_blank" rel="noopener" style="color:rgba(255,255,255,.75)">Get directions</a></div>
-      </div>
+<section class="hero" style="background-image:url('{{ url_for('static', filename='img/photos/worship.jpg') }}');">
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow eyebrow--light">Bloomfield, Missouri</p>
+    <h1>Engage with God.<span class="accent">Engage in community.</span></h1>
+    <p>{{ church.intro }}</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="{{ url_for('visit') }}">Plan your visit</a>
+      <a class="btn btn--onDark" href="{{ url_for('sermons') }}">Watch a message</a>
     </div>
   </div>
 </section>
