@@ -94,8 +94,6 @@
           <li><a href="{{ url_for('ministries') }}">Ministries</a></li>
           <li><a href="{{ sermons_url }}"{% if sermons_external %} target="_blank" rel="noopener"{% endif %}>Sermons</a></li>
           <li><a href="{{ url_for('give') }}">Give</a></li>
-          <li><a href="tel:{{ church.phone_tel }}">{{ church.phone_display }}</a></li>
-          <li><a href="mailto:{{ church.email }}">{{ church.email }}</a></li>
         </ul>
       </div>
     </div>
