@@ -12,7 +12,7 @@
     <p>{{ church.intro }}</p>
     <div class="btn-row">
       <a class="btn btn--primary" href="{{ url_for('visit') }}">Plan your visit</a>
-      <a class="btn btn--onDark" href="{{ url_for('sermons') }}">Watch a message</a>
+      <a class="btn btn--onDark" href="{{ sermons_url }}"{% if sermons_external %} target="_blank" rel="noopener"{% endif %}>Watch a message</a>
     </div>
   </div>
 </section>
@@ -61,12 +61,12 @@
     <div class="grid grid--split">
       <div>
         <p class="eyebrow">This week</p>
-        <h2>Latest message</h2>
+        <h2>{% if sermons %}Latest message{% else %}Sunday messages{% endif %}</h2>
         <p class="lede">
           Miss a Sunday, or want to hear it again? Every message goes up on our
           YouTube channel.
         </p>
-        <a class="link" href="{{ url_for('sermons') }}">All sermons</a>
+        <a class="link" href="{{ sermons_url }}"{% if sermons_external %} target="_blank" rel="noopener"{% endif %}>Visit our channel</a>
       </div>
       <div>
         {% if sermons %}
@@ -82,11 +82,10 @@
             {% if s.published %}<div class="date">{{ s.published }}</div>{% endif %}
           </div>
         {% else %}
-          <div class="empty">
-            <h3>Messages are coming soon</h3>
-            <p>Sunday messages will be posted here each week once our channel is live.</p>
-            <a class="btn btn--ghost" href="{{ youtube_url }}" target="_blank" rel="noopener">Visit our channel</a>
-          </div>
+          <img class="cut" src="{{ url_for('static', filename='img/photos/preaching.jpg') }}"
+               alt="Pastor Patrick Grissom preaching on a Sunday morning at Engage Church"
+               width="1467" height="978" loading="lazy"
+               style="width:100%;height:auto;border-radius:4px;">
         {% endif %}
       </div>
     </div>

@@ -32,7 +32,7 @@ CONTACT_TO = os.environ.get("CONTACT_TO", "info@engagebloomfield.com")
 # Sermons. Set YOUTUBE_CHANNEL_ID once the channel exists (starts with "UC").
 YOUTUBE_CHANNEL_ID = os.environ.get("YOUTUBE_CHANNEL_ID", "")
 YOUTUBE_CHANNEL_URL = os.environ.get(
-    "YOUTUBE_CHANNEL_URL", "https://www.youtube.com/@engagebloomfield"
+    "YOUTUBE_CHANNEL_URL", "https://www.youtube.com/@BloomfieldFGBC"
 )
 
 # Giving. Currently the existing Tithe.ly link. Replace when Engage's own is live.
@@ -384,8 +384,15 @@ def asset_version(filename):
 
 @app.context_processor
 def inject_globals():
+    # Where every "sermons" link points. With no channel ID configured the site
+    # has nothing to show, so links go straight to YouTube. Set
+    # YOUTUBE_CHANNEL_ID and they switch to the on-site Sermons page
+    # automatically, with no template changes.
+    sermons_external = not YOUTUBE_CHANNEL_ID
     return {
         "css_version": asset_version("css/style.css"),
+        "sermons_external": sermons_external,
+        "sermons_url": YOUTUBE_CHANNEL_URL if sermons_external else url_for("sermons"),
         "church": CHURCH,
         "services": SERVICES,
         "give_url": GIVE_URL,

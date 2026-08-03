@@ -22,7 +22,7 @@ re-sync `render.yaml` against a running service.
 | `RESEND_API_KEY` | Yes | Resend SMTP relay password. Without it, forms log instead of sending |
 | `MAIL_FROM` | Yes | Must be on a domain verified in Resend |
 | `CONTACT_TO` | Yes | Where form submissions land |
-| `YOUTUBE_CHANNEL_ID` | No | Starts with `UC`. Blank shows the sermon empty state |
+| `YOUTUBE_CHANNEL_ID` | No | Blank sends every sermon link straight to YouTube. Set it to `UCr-CovLjIcJDxa9hb4YdIMg` and the links switch to the on-site Sermons page, populated from the feed |
 | `YOUTUBE_CHANNEL_URL` | No | Public channel link used on buttons |
 | `GIVE_URL` | No | Giving platform link. Currently the legacy Tithe.ly URL |
 | `PRECHECK_URL` | No | Kids pre-check link. Blank hides the button rather than shipping a dead link |
@@ -44,6 +44,12 @@ To send a ministry's inquiries to its own inbox, change that entry's second
 value in `CONTACT_ROUTES`. Nothing else needs to change.
 
 ## Sermons
+
+Every sermon link on the site (header, hero button, home section, footer) points
+at one shared destination controlled by `sermons_url`. With `YOUTUBE_CHANNEL_ID`
+unset, that destination is the YouTube channel and the links open in a new tab.
+Set the channel ID and they all switch to the on-site `/sermons` page with no
+template changes.
 
 Pulled from the channel's public RSS feed. No API key, no quota, cached one
 hour. YouTube publishes the 15 most recent uploads on that feed, so the page
@@ -77,7 +83,7 @@ registered.
 | Legal entity name | `CHURCH["legal_name"]` | Needs confirmation for footer and giving receipts |
 | Parking and entrance detail | `VISIT_FAQS` | Written from assumption, confirm the lot and door |
 | Facebook and Instagram links | `CHURCH` | Blank until new accounts exist |
-| Photos | `static/img/photos/` | Three supplied images. All show people from behind. Replace after the Sunday shoot |
+| Photos | `static/img/photos/` | Four supplied images. `preaching.jpg` is the Home sermon section fallback and shows once the YouTube channel is set. The other three show people from behind. Replace after the Sunday shoot |
 | Staff photo, Joel and Cory | `static/img/staff/` | Lower resolution than the others. Reshoot |
 | Next Steps page | `/next-steps` | Scaffolded and kept out of the nav until content is delivered |
 

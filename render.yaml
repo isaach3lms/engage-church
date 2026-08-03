@@ -17,7 +17,7 @@ services:
       - key: YOUTUBE_CHANNEL_ID
         sync: false
       - key: YOUTUBE_CHANNEL_URL
-        value: https://www.youtube.com/@engagebloomfield
+        value: https://www.youtube.com/@BloomfieldFGBC
       - key: GIVE_URL
         sync: false
       - key: PRECHECK_URL

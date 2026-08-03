@@ -58,7 +58,7 @@
       <a href="{{ url_for('visit') }}"      {% if page=='visit' %}aria-current="page"{% endif %}>Plan Your Visit</a>
       <a href="{{ url_for('about') }}"      {% if page=='about' %}aria-current="page"{% endif %}>About</a>
       <a href="{{ url_for('ministries') }}" {% if page=='ministries' %}aria-current="page"{% endif %}>Ministries</a>
-      <a href="{{ url_for('sermons') }}"    {% if page=='sermons' %}aria-current="page"{% endif %}>Sermons</a>
+      <a href="{{ sermons_url }}"{% if sermons_external %} target="_blank" rel="noopener"{% elif page=='sermons' %} aria-current="page"{% endif %}>Sermons</a>
       <a href="{{ url_for('contact') }}"    {% if page=='contact' %}aria-current="page"{% endif %}>Contact</a>
       <a class="btn btn--primary" href="{{ url_for('give') }}">Give</a>
     </nav>
@@ -92,7 +92,7 @@
         <ul>
           <li><a href="{{ url_for('visit') }}">Plan your visit</a></li>
           <li><a href="{{ url_for('ministries') }}">Ministries</a></li>
-          <li><a href="{{ url_for('sermons') }}">Sermons</a></li>
+          <li><a href="{{ sermons_url }}"{% if sermons_external %} target="_blank" rel="noopener"{% endif %}>Sermons</a></li>
           <li><a href="{{ url_for('give') }}">Give</a></li>
           <li><a href="tel:{{ church.phone_tel }}">{{ church.phone_display }}</a></li>
           <li><a href="mailto:{{ church.email }}">{{ church.email }}</a></li>
