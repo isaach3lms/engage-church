@@ -342,7 +342,9 @@ p:last-child { margin-bottom: 0; }
 .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .staff figure { margin: 0; }
 .staff img {
-  width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+  /* `height: auto` is required: without it the HTML height="800" attribute wins
+     over aspect-ratio and the photo renders 800px tall in a narrower column. */
+  width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
   border-radius: var(--radius);
   filter: saturate(.86);
 }
