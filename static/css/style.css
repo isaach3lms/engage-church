@@ -474,6 +474,26 @@ p:last-child { margin-bottom: 0; }
 .site-footer li { margin-bottom: 10px; }
 .site-footer a { color: rgba(255,255,255,.72); text-decoration: none; font-size: .95rem; }
 .site-footer a:hover { color: var(--orange); }
+/* Social icon row in the footer. Icons inherit currentColor, so the hover
+   state comes from the same rule that colors the footer links. 44px touch
+   targets so they are tappable on a phone. */
+.social { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.social li { margin: 0; }
+.social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  color: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius);
+  transition: color .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.social a:hover {
+  color: var(--charcoal);
+  background: var(--orange);
+  border-color: var(--orange);
+}
+.social svg { width: 20px; height: 20px; fill: currentColor; display: block; }
+
 .footer-bottom {
   margin-top: 48px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,.14);
   display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;

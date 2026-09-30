@@ -35,7 +35,8 @@
     "addressRegion": "MO",
     "postalCode": "63825",
     "addressCountry": "US"
-  }
+  }{% if socials %},
+  "sameAs": [{% for key, label, url in socials %}"{{ url }}"{% if not loop.last %}, {% endif %}{% endfor %}]{% endif %}
 }
 </script>
 </head>
@@ -95,6 +96,9 @@
           <li><a href="{{ sermons_url }}"{% if sermons_external %} target="_blank" rel="noopener"{% endif %}>Sermons</a></li>
           <li><a href="{{ url_for('give') }}">Give</a></li>
         </ul>
+
+        <h4 style="margin-top:26px;">Follow along</h4>
+        {% include "partials/_social.html" %}
       </div>
     </div>
 

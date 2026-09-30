@@ -61,8 +61,12 @@ CHURCH = {
     "phone_display": "(573) 568-3494",
     "phone_tel": "+15735683494",
     "email": "info@engagebloomfield.com",
-    "facebook": "",
-    "instagram": "",
+    # Social profiles. Blank entries are skipped rather than rendered dead.
+    # These still carry the old brand name and will need updating when the
+    # church renames the accounts.
+    "facebook": "https://www.facebook.com/profile.php?id=100068695426664",
+    "instagram": "https://www.instagram.com/bloomfieldfgbc/",
+    "tiktok": "https://www.tiktok.com/@engagebloomfield",
     "youtube": YOUTUBE_CHANNEL_URL,
     # Legal entity name for the footer. CONFIRM with the church before launch.
     "legal_name": "Engage Church",
@@ -389,8 +393,23 @@ def inject_globals():
     # YOUTUBE_CHANNEL_ID and they switch to the on-site Sermons page
     # automatically, with no template changes.
     sermons_external = not YOUTUBE_CHANNEL_ID
+
+    # Only profiles that actually exist get an icon. Add a URL in CHURCH above
+    # and the icon appears; blank it and the icon disappears.
+    socials = [
+        (key, label, CHURCH.get(key, ""))
+        for key, label in (
+            ("facebook", "Facebook"),
+            ("instagram", "Instagram"),
+            ("tiktok", "TikTok"),
+            ("youtube", "YouTube"),
+        )
+    ]
+    socials = [(k, label, url) for k, label, url in socials if url]
+
     return {
         "css_version": asset_version("css/style.css"),
+        "socials": socials,
         "sermons_external": sermons_external,
         "sermons_url": YOUTUBE_CHANNEL_URL if sermons_external else url_for("sermons"),
         "church": CHURCH,
