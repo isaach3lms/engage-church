@@ -206,7 +206,7 @@ BELIEFS = [
     ("The Church", "The Church Universal is the body of Christ and the fellowship of all believers. A local church is a fellowship of Christians voluntarily banded together for worship, nurture, and service."),
     ("Ordinances", "Baptism and the Lord's Supper are ordinances instituted by Christ. The biblical mode of baptism is immersion, symbolizing the internal decision to follow Christ. The Lord's Supper is open to all Christians."),
     ("The Lord's Day", "The first day of the week is set apart for worshiping God, witnessing for Christ, and ministering to the needs of others."),
-    ("Last Things", "We believe in the personal return of Jesus Christ and the bodily resurrection of the dead. God will judge all people by Jesus Christ, rewarding the righteous with eternal life and banishing the unrighteous to everlasting punishment."),
+    ("End Times", "We believe in the personal return of Jesus Christ and the bodily resurrection of the dead. God will judge all people by Jesus Christ, rewarding the righteous with eternal life and banishing the unrighteous to everlasting punishment."),
     ("Marriage and Sexuality", "Marriage has one meaning: a single, exclusive union of one man and one woman, sanctioned by God as delineated in Scripture. Sexual intimacy is intended to occur only within that union."),
 ]
 
