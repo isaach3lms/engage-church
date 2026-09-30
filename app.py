@@ -113,7 +113,7 @@ STAFF_LEADERSHIP = [
         "photo": "staff/battles-david.jpg",
     },
     {
-        "name": "Joel and Cory Battles",
+        "name": "Joel and Cori Battles",
         "role": "Office Admins",
         "photo": "staff/battles-joel-cory.jpg",
     },
