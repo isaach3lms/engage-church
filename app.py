@@ -218,7 +218,7 @@ VISIT_FAQS = [
     ("Will I be singled out?",
      "No. You will not be asked to stand up, introduce yourself, or fill anything out. If you want to talk to someone, we are easy to find. If you would rather slip in and slip out, that is completely fine."),
     ("What about the offering?",
-     "There is no giving expectation for guests. The plate is passed and passing it along is normal."),
+     "There is no giving expectation for guests. Nothing is passed down your row. There is a box by the door if you want to give on your way out."),
     ("Where do I park and which door?",
      "Park in the main lot off Christian Street and use the front entrance. Someone will be at the door."),
     ("What happens with my kids?",
