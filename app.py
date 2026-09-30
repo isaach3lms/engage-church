@@ -124,7 +124,7 @@ MINISTRIES = [
     {
         "slug": "kids",
         "name": "Kids",
-        "when": "Sundays, 10:30 AM",
+        "when": "Sundays, 10:30 AM and Wednesdays, 6:00 PM",
         "ages": "Birth through 5th grade",
         "blurb": (
             "Kids learn the same thing the adults are learning, in a room built "
