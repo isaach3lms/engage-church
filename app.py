@@ -101,12 +101,6 @@ STAFF_PASTORAL = [
         "role": "Children's Pastor",
         "photo": "staff/parker.jpg",
     },
-    {
-        "name": "Chris Battles",
-        "role": "Youth Pastor",
-        "spouse": "Amy Battles",
-        "photo": "staff/battles-chris.jpg",
-    },
 ]
 
 STAFF_LEADERSHIP = [
